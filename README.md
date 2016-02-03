@@ -20,7 +20,7 @@ Features:
 ## Requirements
 Full requirements can be found on the [Requirements](https://doc.ez.no/display/TECHDOC/Requirements) page.
 
-*TL;DR: minimum PHP 5.4.4 and higher, using mod_php or php-fpm.*
+*TL;DR: supported PHP versions are 5.5, 5.6 and 7.0 (for dev use), using mod_php or php-fpm.*
 
 ## Installation
 
@@ -61,12 +61,18 @@ app/console assetic:dump --env=dev web
 
 ### 5. Configure virtual host
 
-Finally, configure virtual host by copying included file:
+Finally, configure virtual host by using one of the examples in `doc/apache2` or `doc/nginx`.
+
+**Example**: If you prefer to generate from full blown apache template you can execute the following command:
 
 ```bash
-cp doc/apache2/vhost.template /etc/apache2/sites-enabled/ezplatform.demo.conf
+./bin/vhost.sh --basedir=/var/www/ezplatform \
+  --template-file=doc/apache2/vhost.template \
+  --host-name=ezplatform.demo \
+  | sudo tee /etc/apache2/sites-enabled/ezplatform.demo.conf > /dev/null
 ```
-Manually configure the vhost and then restart Apache.
+
+*For help text you can execute `./bin/vhost.sh -h`.*
 
 ## Accessing the Demo
 
